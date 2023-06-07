@@ -8,7 +8,7 @@ Running the tool is pretty straight forward, however a good understanding of `py
 ## Installation/Setup of Visium Spatial Analysis Tool:
 You can install Visium Spatial Analysis tool via git:
 ```
-git clone <clone-link>
+git clone https://github.com/utdal/visium_spatial_analysis_tool.git
 ```
 
 ## Functionality
