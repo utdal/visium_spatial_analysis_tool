@@ -2,8 +2,8 @@
 Visium Spatial Gene Expression is a next-generation molecular profiling solution for classifying tissue based on total mRNA.
 The steps involved in classifying the Spatial Gene Expression is done in this tool using `python` and `R`. 
 
-This tool is predominantly used for the analysis of visium data and the output (.csv's) are used for further analysis using `R`.
-Running the tool is pretty straight forward, however a good understanding of `python` and `R` is recommended.
+This tool is predominantly used for the analysis of visium spatially resolved RNA-seq data to obtain near single-neuron resolution.
+Running the tool is pretty straight forward, however a good understanding of `python` and `R` is recommended. Please familiarize yourself with data types, basic functions, data structures in each language.
 
 ## Installation/Setup of Visium Spatial Analysis Tool:
 You can install Visium Spatial Analysis tool via git:
@@ -12,11 +12,15 @@ git clone https://github.com/utdal/visium_spatial_analysis_tool.git
 ```
 
 ## Functionality
+#### Visium Spatial Analysis using Python 
 1. Fetching *single* and *multiple* neurons.
 2. Fetching *surrounding* and *other* neurons.
 3. Generating Quality Control plots(*tsne-plot*).
 4. Generating Histogram plots.
 5. Removing the barcodes with *low expression*.
+#### Clustering workflow using R
+1. Generating violin plots.
+2. Generating Clusters - [single-cell].
 
 All the methods in this tool are logged, to enable easy debugging.
 
