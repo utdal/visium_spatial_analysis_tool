@@ -348,17 +348,17 @@ To generate a violin plot, one has to feed in the *Directory_Path*(output from p
 Here is an example of the how to generate violin plots using the function:
 > `vln_plot_function("/path/to/Processed_files/Seurat_input_to_violin_plots", "Pig_DRG")`
 ##### Violin Plot 
-![Violin_Plot](misc/Vln_Plot.png)
+![Violin_Plot](misc/Vln_Plot.PNG)
 
 #### 2. Generating Clusters - [single-cell]
 To generate the clusters, one has to run `clustering_function` function. The input to this function is a `metadata.csv` file.
 An example of **metadata.csv** file:
-##### ![Metadata_File](misc/Metadata_File.png)
+##### ![Metadata_File](misc/Metadata_File.PNG)
 
 > Note: The plots and files generated during the analysis are stored in `Seurat_processed_files` folder in the same directory level as `Processed_files`.
 
 ##### Clusters
-![Clusters](misc/Clusters.png)
+![Clusters](misc/Clusters.PNG)
 
 ---
 
