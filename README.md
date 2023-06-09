@@ -68,7 +68,8 @@ Here is an example of how we run the tool;
 Note: There are 5 functionalities this tool offers, and can be interactively inputted by the user during the runtime.
 
 ### Details about each functionality
-##### 1. Fetching *single* and *multiple* neurons
+#### Visium Spatial Analysis using Python 
+#### 1. Fetching *single* and *multiple* neurons
 This function processes a Final_matrix and a Neuronal_barcode file one-at-a-time for all the file(s) to fetch Single and Multiple(all-neurons) neurons. After processing, the files are saved to the directories under `/Processed_files; "Single" and "Multiple"`.
 
 Inputs needed during this run:
@@ -305,7 +306,6 @@ Note: Here there are filters and threshold defined as shown in the below snippet
 
 
 ##### Run:
-
 ```
 Welcome to visium spatial transcriptions application ...
 -----------------------------------------------
@@ -337,9 +337,30 @@ Running: merge on Single neuron files, results are saved in /Users/user/Download
 {'Status': 'Success', 'Response': 'Barcodes with low expression are removed successfully.'}
 ```
 
-### Output
-The output is predominantly .csv files and plots, these files are stored in `/Processed_files` directory provided during the run-time or alternatively also displayed in the `response`, as shown above.
+#### Output from the python workflow
+The output is predominantly .csv files and plots, these files are stored in `/Processed_files` directory provided during the run-time or alternatively also displayed in the `response`, as shown above. This very output is further used in the clustering workflow.
 
+#### Clustering workflow using R
+To install all the necessary packages in R (`Seurat`, `ggplot2`, `dplyr`, `future`) run this script; **package_manager.R**. Once the necessary packages are installed, run the **seurat_clustering_wf**. This file has two functions namely `vln_plot_function` and `clustering_function`.
+
+#### 1. Generating violin plots
+To generate a violin plot, one has to feed in the *Directory_Path*(output from previous step `/Processed_files/Seurat_input_to_violin_plots`) and a *Project_Name* to the function `vln_plot_function`.
+Here is an example of the how to generate violin plots using the function:
+> `vln_plot_function("/path/to/Processed_files/Seurat_input_to_violin_plots", "Pig_DRG")`
+##### Violin Plot 
+![Violin_Plot](misc/Vln_Plot.png)
+
+#### 2. Generating Clusters - [single-cell]
+To generate the clusters, one has to run `clustering_function` function. The input to this function is a `metadata.csv` file.
+An example of **metadata.csv** file:
+##### ![Metadata_File](misc/Metadata_File.png)
+
+> Note: The plots and files generated during the analysis are stored in `Seurat_processed_files` folder in the same directory level as `Processed_files`.
+
+##### Clusters
+![Clusters](misc/Clusters.png)
+
+---
 
 ### License
 License information can be found in the LICENSE file.
