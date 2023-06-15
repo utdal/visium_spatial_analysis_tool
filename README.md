@@ -14,7 +14,7 @@ git clone https://github.com/utdal/visium_spatial_analysis_tool.git
 ## Functionality
 #### Visium Spatial Analysis using Python 
 1. Fetching *single* and *multiple* neurons.
-2. Fetching *surrounding* and *other* neurons.
+2. Fetching *surrounding* and *other* barcodes.
 3. Generating Quality Control plots(*tsne-plot*).
 4. Generating Histogram plots.
 5. Removing the barcodes with *low expression*.
@@ -88,11 +88,11 @@ Inputs needed during this run:
 ##### Run:
 
 ```
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------
 
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
@@ -120,10 +120,10 @@ Here once we run the `visium_run.py` file and selecting the first(1) functionali
 
 The outputs generated are stored to `Processed_files` directory which is a custom directory which is provided by the user during the run-time.
 
-#### 2. Fetching *surrounding* and *other* neurons
-This function processes a Final_matrix and a Neuronal_barcode file one-at-a-time for all the file(s) to fetch Surrounding and Other neurons. After processing, the files are saved to the directories under `/Processed_files; "Surrounding" and "Other"`.
+#### 2. Fetching *surrounding* and *other* barcodes
+This function processes a Final_matrix and a Neuronal_barcode file one-at-a-time for all the file(s) to fetch Surrounding and Other barcodes. After processing, the files are saved to the directories under `/Processed_files; "Surrounding" and "Other"`.
 
-Note: In this functionality, there is an additional `merge` step that is run on `Multiple`, `Surrounding` and `Other` neurons and saved to the `/Processed_files` directory.
+Note: In this functionality, an additional `merge` step is executed on the `Multiple` neurons, and `Surrounding` and `Other` barcodes. These merged files are saved to the `/Processed_files` directory.
 
 Inputs needed during this run:
    > - Final_matrix: Directory path to final matrices
@@ -141,11 +141,11 @@ Inputs needed during this run:
 ##### Run:   
 
 ```
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------
 
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
@@ -175,7 +175,7 @@ Running: merge on Surrounding files, results are saved in /Users/user/Downloads/
 Here once we run the `visium_run.py` file and selecting the second(2) functionality; one has to provide the `Final_matrices` and `Neuronal_barcodes` directory path's as shown in the above snippet. And, the outputs generated are stored to `Processed_files` directory.
 
 #### 3. Generating Quality Control plots(*tsne-plot*)
-This functionality generates tsne plots for Multiple neurons, Surrounding and Other files. This is performed as part of an additional quality control check. This functionality processes the data through **PCA()** to reduce the dimensions to a few best explaining principal component's.
+This functionality generates tsne plots for Multiple neurons, Surrounding and Other barcode files. This is performed as part of an additional quality control check. This functionality processes the data through **PCA()** to reduce the dimensions to a few best explaining principal component's.
 
 Note: One has to provide the directory path where the `Processed_files` directory is generated. Additionally, one can select **pdf** or **png** for the plots.
 
@@ -191,11 +191,11 @@ Inputs needed during this run:
 ##### Run:
 
 ```
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------
 
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
@@ -248,11 +248,11 @@ Inputs needed during this run:
 ##### Run:
 
 ```
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------
 
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
@@ -307,11 +307,11 @@ Note: Here there are filters and threshold defined as shown in the below snippet
 
 ##### Run:
 ```
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------
 
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
