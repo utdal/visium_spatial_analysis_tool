@@ -22,16 +22,13 @@ git clone https://github.com/utdal/visium_spatial_analysis_tool.git
 1. Generating violin plots.
 2. Generating Clusters - [single-cell].
 
-All the methods in this tool are logged, to enable easy debugging.
-
 ### How does the input data look like...
 This tool requires `Final_matrices` and `Neuronal_barcodes` folders for the analysis. These directories can be stored at a directory level where the analysis data needs to be stored.
 
-There can be any number of *.csv* files in the *Final_matrices* directory, however that should match the respective number of reference Neuronal_barcode .csv's
-
-#### Final_matrices directory:
+There can be any number of *.csv* files in the *Final_matrices* directory, however that should match the respective number of reference *Neuronal_barcode* .csv's
+##### Final_matrices directory:
 ![Final_matrices](misc/Final_matrices.png)
-#### Neuronal_barcodes directory:
+##### Neuronal_barcodes directory:
 ![Neuronal_barcodes](misc/Neuronal_barcodes.png)
 
 ---
@@ -65,7 +62,12 @@ Here is an example of how we run the tool;
    `python visium_run.py`
 2. Using PyCharm, right click and run the file *visium_run.py*
 
-Note: There are 5 functionalities this tool offers, and can be interactively inputted by the user during the runtime.
+Note: There are 5 functionalities this tool has to offer, and can be interactively accessed by the user. Here is some additional terminology:
+> Neuronal barcodes: Are the barcodes that overlap neurons.
+> 
+> Surrounding barcodes: Are the barcodes directly surrounding neurons.
+> 
+> Other barcodes: Any other barcodes overlapping the tissue.
 
 ### Details about each functionality
 #### Visium Spatial Analysis using Python 
