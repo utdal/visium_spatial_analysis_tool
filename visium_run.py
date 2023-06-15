@@ -39,7 +39,7 @@ def visium_func_call(function_call):
 
 if __name__ == '__main__':
     print(""" \n
-Welcome to visium spatial transcriptions application ...
+Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------\n
 1. Fetch single and multiple neuronal data
 2. Fetch surrounding and other neuronal data
