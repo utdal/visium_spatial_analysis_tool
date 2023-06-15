@@ -16,7 +16,7 @@ def visium_func_call(function_call):
             return fetch_gene_expr_selected_neuronal_barcodes()
         elif function_call == 2:
             print("\n")
-            print("2. Fetching surrounding and other barcodes;")
+            print("2. Fetching surrounding and other data;")
             return fetch_gene_expr_surrounding_and_other_barcodes()
         elif function_call == 3:
             print("\n")
@@ -42,7 +42,7 @@ if __name__ == '__main__':
 Welcome to visium spatial transcriptomics application ...
 -----------------------------------------------\n
 1. Fetch single and multiple neuronal data
-2. Fetch surrounding and other neuronal data
+2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
 4. Plot histograms based on thresholds
 5. Remove barcodes with low expression
