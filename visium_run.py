@@ -16,7 +16,7 @@ def visium_func_call(function_call):
             return fetch_gene_expr_selected_neuronal_barcodes()
         elif function_call == 2:
             print("\n")
-            print("2. Fetching surrounding and other data;")
+            print("2. Fetching surrounding and other barcodes;")
             return fetch_gene_expr_surrounding_and_other_barcodes()
         elif function_call == 3:
             print("\n")
