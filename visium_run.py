@@ -39,8 +39,9 @@ def visium_func_call(function_call):
 
 if __name__ == '__main__':
     print(""" \n
-Welcome to visium spatial transcriptomics application ...
+Welcome to visium spatial analysis tool ...
 -----------------------------------------------\n
+The steps that will be run as part of the Visium Analysis are as mentioned:
 1. Fetch single and multiple neuronal data
 2. Fetch surrounding and other barcode data
 3. QC and plot tSNE plots
