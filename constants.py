@@ -2,8 +2,8 @@
 COLNAMES_VISIUM_SINGLE_NEURONS = ['Barcode', 'X', 'Y',
                                   'Gene ID', 'Gene Name',
                                   'Text', 'Gene Expression']
-SINGLE_LIST = ['single', 'Single', 'SINGLE']
-MULTIPLE_LIST = ['multiple', 'Multiple', 'MULTIPLE']
+SINGLE_LIST = ['single', 'Single', 'SINGLE', 'neuron']
+MULTIPLE_LIST = ['multiple', 'Multiple', 'MULTIPLE', 'multi']
 
 # constants
 GENEID = 'Gene ID'
@@ -23,7 +23,8 @@ TSNE1 = "tSNE1"
 TSNE2 = "tSNE2"
 
 SINGLE_NEURON_ID = "single_neurons_sample_"
-MULTIPLE_NEURON_ID = "all_neurons_sample_"
+MULTIPLE_NEURON_ID = "multiple_neurons_sample_"
+ALL_NEURON_ID = "single_multiple_neurons_sample_"
 OTHER_NEURON_ID = "other_sample_"
 SURROUNDING_NEURON_ID = 'surrounding_sample_'
 
@@ -38,6 +39,7 @@ RESPONSE = 'Response'
 SINGLE_NEUR = 'Single'
 CLUSTER = 'Seurat_input_to_cluster'
 MULTIPLE_NEUR = 'Multiple'
+ALL_NEUR = 'Single_and_Multiple'
 SURROUNDING_NEUR = "Surrounding"
 OTHER_NEUR = "Other"
 SEURAT_INPUT = 'Seurat_input_to_violin_plots'
@@ -45,6 +47,7 @@ MULTIPLE_NEUR_QC = "Neurons"
 SINGLE_NEUR_CLEANUP_FILTER = "Single_neur_cleanup_filter_"
 SINGLE_NEUR_CLEANUP = "Single_neur_cleanup_"
 SINGLE_NEUR_CLEANUP_THRESHOLD = "Single_neur_cleanup_"
+SINGLE_NEUR_CLEANUP_THRESHOLD = "Single_neur_cleanup_threshold_"
 PROCESSED_FILES = 'Processed_files'
 PLOTS = 'Plots'
 COUNTS = "Counts"
