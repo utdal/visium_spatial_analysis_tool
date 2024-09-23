@@ -56,6 +56,8 @@ def fetch_gene_expr_selected_neuronal_barcodes(final_matrix_fp, neuronal_barcode
             os.mkdir(processed_files+os.sep+constants.SINGLE_NEUR)
         if not os.path.exists(processed_files+os.sep+constants.MULTIPLE_NEUR):
             os.mkdir(processed_files+os.sep+constants.MULTIPLE_NEUR)
+        if not os.path.exists(processed_files+os.sep+constants.ALL_NEUR):
+            os.mkdir(processed_files+os.sep+constants.ALL_NEUR)
 
         # zip, os.listdir & sorted functions help us get the respective Final matrix associated with Neural barcodes
         for final_matrix, neural_barcode in zip(sorted(os.listdir(final_matrix_fp)),
@@ -68,24 +70,7 @@ def fetch_gene_expr_selected_neuronal_barcodes(final_matrix_fp, neuronal_barcode
                                                   columns=constants.BARCODE, values=constants.GENEEXPR).fillna(0)
             # Loading neuronal barcodes of interest that were manually selected in the Loupe browser
             neurons_df = pd.read_csv(neuronal_barcodes_fp + os.sep + neural_barcode)
-
-            # Checking the run_param from the SINGLE_LIST and MULTIPLE_LIST
-            # if run_param in constants.SINGLE_LIST:
-            #     var, var_neur = constants.SINGLE_NEUR, constants.SINGLE_NEURON_ID
-            #     # Filtering single neurons
-            #     single_neurons = neurons_df[neurons_df[constants.NEURONS].isin(constants.SINGLE_LIST)]
-            #     # Fetching the barcodes for the respective neurons
-            #     barcodes = single_neurons[constants.BARCODE].to_list()
-            #     temp_file_name = processed_files + os.sep + constants.SINGLE_NEUR + os.sep + \
-            #                      constants.SINGLE_NEURON_ID + str(single_neur_counter) + constants.CSV_FILE
-            #     single_neur_counter = single_neur_counter + 1
-            # else:
-            #     var, var_neur = constants.MULTIPLE_NEUR, constants.MULTIPLE_NEURON_ID
-            #     # Fetching the barcodes for the respective neurons
-            #     barcodes = neurons_df[constants.BARCODE].to_list()
-            #     temp_file_name = processed_files + os.sep + constants.MULTIPLE_NEUR + os.sep + \
-            #                      constants.MULTIPLE_NEURON_ID + str(all_neur_counter) + constants.CSV_FILE
-            #     all_neur_counter = all_neur_counter + 1
+            # neurons_df.columns = neurons_df.columns.str.strip()
 
             # Single neurons
             single_neurons = neurons_df[neurons_df[constants.NEURONS].isin(constants.SINGLE_LIST)]
@@ -97,10 +82,22 @@ def fetch_gene_expr_selected_neuronal_barcodes(final_matrix_fp, neuronal_barcode
             # return_df = return_df.add_prefix("id{}-".format(final_matrix.split('.')[0][-1]))
             return_df = return_df.add_prefix("id{}-".format(final_matrix.split('.')[0].split('_')[-1]))
             return_df.to_csv(temp_file_name)  # saving the dataframe to the temp_file_name path
-            # Fetching the barcodes for the respective neurons - All/Multiple neurons
-            barcodes = neurons_df[constants.BARCODE].to_list()
+
+            # Multiple neurons
+            multiple_neurons = neurons_df[neurons_df[constants.NEURONS].isin(constants.MULTIPLE_LIST)]
+            # Fetching the barcodes for the respective neurons
+            barcodes = multiple_neurons[constants.BARCODE].to_list()
             temp_file_name = processed_files + os.sep + constants.MULTIPLE_NEUR + os.sep + \
-                             constants.MULTIPLE_NEURON_ID + str(final_matrix.split(".")[0].split('_')[-1]) + constants.CSV_FILE
+                             constants.MULTIPLE_NEURON_ID + str(
+                final_matrix.split(".")[0].split('_')[-1]) + constants.CSV_FILE
+            return_df = all_barcodes[np.intersect1d(all_barcodes.columns, barcodes)]
+            return_df = return_df.add_prefix("id{}-".format(final_matrix.split('.')[0].split('_')[-1]))
+            return_df.to_csv(temp_file_name)  # saving the dataframe to the temp_file_name path
+
+            # Fetching the barcodes for the respective neurons - All neurons
+            barcodes = neurons_df[constants.BARCODE].to_list()
+            temp_file_name = processed_files + os.sep + constants.ALL_NEUR + os.sep + \
+                             constants.ALL_NEURON_ID + str(final_matrix.split(".")[0].split('_')[-1]) + constants.CSV_FILE
             return_df = all_barcodes[np.intersect1d(all_barcodes.columns, barcodes)]
             # Change ID to sampleID, so we can always associate these barcodes with the respective sample
             return_df = return_df.add_prefix("id{}-".format(final_matrix.split('.')[0].split('_')[-1]))
@@ -110,7 +107,7 @@ def fetch_gene_expr_selected_neuronal_barcodes(final_matrix_fp, neuronal_barcode
         response_template[constants.STATUS] = constants.SUCCESS
         response_template[constants.RESPONSE] = "Files generated are saved in the directories: {} & {}".format(
             processed_files + os.sep + constants.SINGLE_NEUR,
-            processed_files + os.sep + constants.MULTIPLE_NEUR)
+            processed_files + os.sep + constants.ALL_NEUR, processed_files + os.sep + constants.MULTIPLE_NEUR)
 
     except Exception as error_msg:
         response_template[constants.STATUS] = constants.FAILED
