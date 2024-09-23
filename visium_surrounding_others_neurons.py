@@ -20,7 +20,12 @@ def df_merger(df_file_loc):
             except:
                 df_list.append(temp_df)
                 continue
-        merged_df = reduce(lambda left, right: pd.merge(left, right, on=constants.GENENAME, how='outer'), df_list)
+
+        # merged_df = reduce(lambda left, right: pd.merge(left, right, on=constants.GENENAME, how='outer'), df_list)
+        merged_df = df_list[0]
+        for for_df in df_list[1:]:
+            merged_df = pd.merge(merged_df, for_df, on=constants.GENENAME, how='outer')
+
         merged_df.fillna(value=0, inplace=True)
         suffixes = merged_df.groupby(constants.GENENAME).cumcount().astype(str)
         merged_df[constants.GENENAME] += '_' + suffixes
@@ -164,15 +169,20 @@ def fetch_gene_expr_surrounding_and_other_barcodes(final_matrix_fp, neuronal_bar
             other_barcodes_df.to_csv(temp_file_name)
             counter = counter + 1
 
-        all_neur_fp = processed_files + os.sep + constants.MULTIPLE_NEUR
+        multiple_neur_fp = processed_files + os.sep + constants.MULTIPLE_NEUR
         other_neur_fp = processed_files + os.sep + constants.OTHER_NEUR
         surr_neur_fp = processed_files + os.sep + constants.SURROUNDING_NEUR
+        all_neur_fp = processed_files + os.sep + constants.ALL_NEUR
         if not os.path.exists(processed_files + os.sep + constants.SEURAT_INPUT):
             os.mkdir(processed_files + os.sep + constants.SEURAT_INPUT)
         print("Running: merge on Multiple neuron files, results are saved in {} directory.".format(
             processed_files + os.sep + constants.SEURAT_INPUT))
         multiple_sample_merge = processed_files + os.sep + constants.SEURAT_INPUT + os.sep + 'multiple_sample_merge.csv'
-        df_merger_dask(all_neur_fp).to_csv(multiple_sample_merge, index=False, chunksize=10000)
+        df_merger_dask(multiple_neur_fp).to_csv(multiple_sample_merge, index=False, chunksize=10000)
+        print("Running: merge on Single and Multiple neuron/All files, results are saved in {} directory.".format(
+            processed_files + os.sep + constants.SEURAT_INPUT))
+        all_sample_merge = processed_files + os.sep + constants.SEURAT_INPUT + os.sep + 'single_and_multiple_sample_merge.csv'
+        df_merger_dask(all_neur_fp).to_csv(all_sample_merge, index=False, chunksize=10000)
         print("Running: merge on Other files, results are saved in {} directory.".format(
             processed_files + os.sep + constants.SEURAT_INPUT))
         other_sample_merge = processed_files + os.sep + constants.SEURAT_INPUT + os.sep + 'other_sample_merge.csv'
